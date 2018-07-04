@@ -14,4 +14,4 @@ Subrace:Hill, Mountain
 Hill:AbilityScoreIncrease: WIS:1
 Hill:Additional1:Dwarven Toughness:HP increases by 1 and an additional 1 per level
 Mountain:AbilityScoreIcrease: STR:2
-Mountain:Aditional1:Dwarven Armor Training: Proficiency Light Armor, Medium Armor 
+Mountain:Aditional1:Dwarven Armor Training:proficiency:Light Armor, Medium Armor
