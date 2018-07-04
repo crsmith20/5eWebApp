@@ -9,7 +9,7 @@ Additional:Darkvision:60
 Additional:Celestial Resistance:Resistance:Necrotic, Radiant
 Additional:Healing Hands:Action: Heal up to Lvl, 1/LRest
 Additional:Light Bearer:Cantrip:Light
-Subraces: Protector, Scourge, Fallen
+Subrace: Protector, Scourge, Fallen
 Protector:AbilityScoreIncrease: WIS:1
 Protector:Aditional:Radiant Soul:Lvl 3:Action:1 Min, End with BAction:Flying:30:Extra Damage:Radiant:Up to Lvl, 1/LRest
 Scourge:AbilityScoreIncrease: CON:1
