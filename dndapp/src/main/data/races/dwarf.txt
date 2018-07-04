@@ -1,0 +1,15 @@
+Race:Dwarf
+AbilityScoreIncrease: CON:2
+Age:350
+Alignment:Lawful, Good
+Size:Medium
+Speed:25
+Languages:Common, Dwarvish
+Additional1:Darkvision:60
+Additional2:Dwarven Resillience:ADV:Poison Savig Throws:resistance:Poison
+Additional3:Dwarven Combat Training:proficiency:battleaxe, handaxe, light hammer, warhammer
+Additional4:ToolProficiency:Smith, Brewer, Mason
+Additional5:Stone Cunning:
+Subrace:Hill, Mountain
+Hill:AbilityScoreIncrease: WIS:1
+Hill:Additional1:Dwarven Toughness:HP increases by 1 and an additional 1 per level
