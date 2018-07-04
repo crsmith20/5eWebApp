@@ -1,0 +1,10 @@
+Race:Elf
+Abilityscoreincrease: Dex:2
+Age:750
+Alignment:Chaotic, Good
+Size:Medium
+Speed:30
+Additional:Darkvison:60
+Additional:Keen Senses:proficiency:Perception
+Additional:Fey Ancestry:can't be put to sleep,ADV:Charmed
+Additional:Trance:4hr lrest
