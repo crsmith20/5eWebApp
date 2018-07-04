@@ -5,13 +5,13 @@ Alignment:Lawful, Good
 Size:Medium
 Speed:25
 Languages:Common, Dwarvish
-Additional1:Darkvision:60
-Additional2:Dwarven Resillience:ADV:Poison Savig Throws:resistance:Poison
-Additional3:Dwarven Combat Training:proficiency:battleaxe, handaxe, light hammer, warhammer
-Additional4:ToolProficiency:Smith, Brewer, Mason
-Additional5:Stone Cunning:on stonework Proficiency: History double Profincency
+Additional:Darkvision:60
+Additional:Dwarven Resillience:ADV:Poison Savig Throws:resistance:Poison
+Additional:Dwarven Combat Training:proficiency:battleaxe, handaxe, light hammer, warhammer
+Additional:ToolProficiency:Smith, Brewer, Mason
+Additional:Stone Cunning:on stonework Proficiency: History double Profincency
 Subrace:Hill, Mountain
 Hill:AbilityScoreIncrease: WIS:1
-Hill:Additional1:Dwarven Toughness:HP increases by 1 and an additional 1 per level
+Hill:Additional:Dwarven Toughness:HP increases by 1 and an additional 1 per level
 Mountain:AbilityScoreIcrease: STR:2
-Mountain:Aditional1:Dwarven Armor Training:proficiency:Light Armor, Medium Armor
+Mountain:Aditional:Dwarven Armor Training:proficiency:Light Armor, Medium Armor
