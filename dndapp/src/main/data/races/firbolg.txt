@@ -1,7 +1,7 @@
 Race:Firbolg
-AbilityScoreIncrease: WIS:2 STR:1
+AbilityScoreIncrease: WIS:2:STR:1
 Age:500
-Alignment:Neutral Good
+Alignment:Neutral, Good
 Size:Medium
 Speed:30
 Languages:Common, Elvish, Giant
