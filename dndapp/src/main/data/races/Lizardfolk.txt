@@ -1,5 +1,5 @@
 Race:Lizardfolk
-AbilityScoreIncrease: CON:2 WIS:1
+AbilityScoreIncrease: CON:2:WIS:1
 Age:60
 Alignment:Neutral
 Size:Medium
