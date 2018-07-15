@@ -1,5 +1,5 @@
 Race:Human
-AbilityScoreIncrease: STR:1 DEX:1 CON:1 INT:1 WIS:1 CHA:1
+AbilityScoreIncrease: STR:1:DEX:1:CON:1:INT:1:WIS:1:CHA:1
 Age:100
 Alignment:All
 Size:Medium
