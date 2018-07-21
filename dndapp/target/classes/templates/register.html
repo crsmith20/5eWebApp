@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>D&D Character Builder</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+	<div class="mainNav">
+		<div th:include="header :: navBar"></div>	
+		<ul class="navBarList">
+			<li class="navBarItems"><a class="navBarLinks" th:href="@{/}">Home</a></li>
+			<li class="navBarItems"><a class="navBarLinks" th:href="@{/characters}">Characters</a></li>
+			<li class="navBarItems" style="float: right"><a class="navBarLinks active" th:href="@{/admin}">Login</a></li>
+		</ul>
+	</div>
+	<div id="container">
+        <form action="/register" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <div id="lower">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

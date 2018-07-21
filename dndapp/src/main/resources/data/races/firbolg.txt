@@ -1,0 +1,11 @@
+Race:Firbolg
+AbilityScoreIncrease: WIS:2:STR:1
+Age:500
+Alignment:Neutral, Good
+Size:Medium
+Speed:30
+Languages:Common, Elvish, Giant
+Additional:Firbolg Magic:Spell:Detect Magic, Disguise Self:Can seem 3ft shorter than normal with this version of Disguise Self:1/rest
+Additional:Hidden Step:BAction:You are invisible until the start of your next turn or until you attack, make a damage roll, or force someone to make a saving throw:1/rest
+Additional:Powerful Build:You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift
+Additional:Speech of Beast and Leaf:You have the ability to communicate in a limited manner with beasts and plants. They can understand the meaning of your words though you have no special ability to understand them in return. You have advantage on all CHA checks you make to influence them

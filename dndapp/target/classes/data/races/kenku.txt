@@ -1,5 +1,5 @@
 Race:Kenku
-AbilitysScoreIncrease: DEX:2:WIS:1
+AbilityScoreIncrease: DEX:2:WIS:1
 Age:60
 Alignment:Chaotic Neutral
 Size:Medium
