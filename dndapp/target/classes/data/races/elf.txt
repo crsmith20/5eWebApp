@@ -4,7 +4,39 @@ Age:750
 Alignment:Chaotic, Good
 Size:Medium
 Speed:30
-Additional:Darkvison:60
+Languages:Common, Elvish
+Additional:Darkvison:60ft
 Additional:Keen Senses:proficiency:Perception
 Additional:Fey Ancestry:can't be put to sleep,ADV:Charmed
 Additional:Trance:4hr lrest
+Subrace: High, Wood, Dark(Drow), Eladrin, Sea, Shadar-kai
+High:AbilityScoreIncrease: INT:1
+High:Additional:Elf Weapon Training: Proficiency in longsword,shortsword,longbow,shortbow
+High:Additional:Cantrip: choose one cantrip from wizard spell list
+High:Additional:Extra Language: choose one language 
+Wood:AbilityScoreIncrease: WIS:1
+Wood:Additional:Elf Weapon Training: Proficiency in longsword,shortsword,longbow,shortbow
+Wood:Additional:Fleet of Foot: walking speed 35
+Wood:Speed:35
+Wood:Additional:Mask of Wild:attempt too hide in foliage,heavy rain,falling show,other natural phenomena
+Dark(Drow):AbilityScoreIncrease:CHA:1
+Dark(Drow):Additional:Superior Dark Vison: 120 feet
+Dark(Drow):Additional:Darkvison:120
+Dark(Drow):Additional:Sunlight Sensitivity: Disadvantage on Attack rolls,Wisdom(Perception) checks in sunlight
+Dark(Drow):Additional:Additional:Drow Magic:dancing lights cantrip at 3ed level faerie fire once per long rest at 5th level Darkness once per long rest
+Dark(Drow):Additional:Drow weapon training: proficiency with rapiers,shortswords,hand crossbow
+Eladrin:AbilityScoreIncrease:CHA:1
+Eladrin:Subrace:Autumn,Winter,Spring,Summer
+Eladrin:Additional:Fay Step:Bonus action teleport up to 30 feet to an unoccupied space 1/rest at 3rd level additional effect based on your season saving throw DC equals 8+proficiency bonus+CHA Modifier
+Eladrin:Autumn:Additional:Fay Step:After Useing Fay Step Choose 2 creatures within 10 feet too make WIS saving throw or be charmed for 1 minute
+Eladrin:Winter:Additional:Fay Step:When you use Fay Step choose 1 creature within 5 feet before teleport too make a WIS saving throw or be Frightened unill end of next turn
+Eladrin:Spring:Additional:Fay Step:Touch 1 willing creature within 5 feet too teleport them up to 30 feet to an unoccupied space
+Eladrin:Summer:Additional:Fay Step:After you Fay Step every creature of your choice within 5 feet takes fire damage equal to your CHA Modifier
+Sea:AbilityScoreIncrease:CON:1
+Sea:Additional:Sea elf training:spear,trident,light crossbow,net
+Sea:Additional:Child of the sea:swimming speed 30 feet breath water and air
+Sea:Additional:Friend of the sea: useing gestures and sounds can communicate simple ideas with any beast with a swimming speed
+Sea:Languages:Aquan
+Shadar-kai:AbilityScoreIncrease:CON:1
+Shadar-kai:Additional:Necrotic Resistance:resistance to necrotic damage
+Shadar-kai:Additional:Blessing of the raven queen:bonus action teleport to 30 feet unoccupied space cant do again 1/long rest 3rd level resistance to all damage lasts until the start of your next turn
