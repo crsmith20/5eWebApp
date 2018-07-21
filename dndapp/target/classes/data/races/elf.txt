@@ -1,5 +1,5 @@
 Race:Elf
-Abilityscoreincrease: Dex:2
+AbilityScoreIncrease: DEX:2
 Age:750
 Alignment:Chaotic, Good
 Size:Medium
