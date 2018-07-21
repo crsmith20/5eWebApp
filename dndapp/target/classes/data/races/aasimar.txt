@@ -11,7 +11,7 @@ Additional:Healing Hands:Action: Heal up to Lvl, 1/LRest
 Additional:Light Bearer:Cantrip:Light
 Subrace: Protector, Scourge, Fallen
 Protector:AbilityScoreIncrease: WIS:1
-Protector:Aditional:Radiant Soul:Lvl 3:Action:1 Min, End with BAction:Flying:30:Extra Damage:Radiant:Up to Lvl, 1/LRest
+Protector:Additional:Radiant Soul:Lvl 3:Action:1 Min, End with BAction:Flying:30:Extra Damage:Radiant:Up to Lvl, 1/LRest
 Scourge:AbilityScoreIncrease: CON:1
 Scourge:Additional:Radiant Consumption:Lvl 3:Action:1 Min, End with BAction:Shed bright light 10ft Radius, Dim light additional 10ft:End of Turn:Damage:Radiant:Half Lvl: You, Creatures within 10ft:Extra Damage:Radiant:Up to Lvl, 1/LRest
 Fallen:AbilityScoreIncrease: STR:1
