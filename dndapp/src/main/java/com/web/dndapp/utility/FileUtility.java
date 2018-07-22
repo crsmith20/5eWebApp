@@ -108,7 +108,7 @@ public final class FileUtility {
 					case "Additional":
 						// multiple feats, update racial feats later
 						String[] feat = line[1].split(":", 2);
-						feats.put(feat[0], line[1]);
+						feats.put(feat[0], feat[1]);
 						break;
 					case "Subrace":
 						Map<String, Race> races = new HashMap<>();

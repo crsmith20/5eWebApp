@@ -6,7 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/races.css}">
-
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
 </head>
 <body>
 	<div class="mainNav">
@@ -27,12 +30,12 @@
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
-				<div class="table100 ver3 m-b-110">
+				<div class="table100 ver3">
 					<div class="table100-head">
 						<table>
 							<thead>
 								<tr class="row100 head">
-									<th class="cell100" colspan="2">Race</th>
+									<th class="cell100">Race</th>
 								</tr>
 							</thead>
 						</table>
@@ -40,10 +43,17 @@
 					<div class="table100-body">
 						<table>
 							<tbody>
-								<th:block th:each="race : ${races}">
-									<tr class="row100 body">
-										<td class="cell100 column0"><span class="glyphicon glyphicon-plus"></span></td>
-										<td class="cell100 column1" th:text="${race.name}">Race</td>
+								<th:block th:each="race, iterStat : ${races}">
+									<tr data-toggle="collapse" class="row100 body accordion-toggle" th:attr="data-target='#row' + ${iterStat.count}">
+										<td class="cell100 expandingRow">
+											<span th:attr="id='iconrow' + ${iterStat.count}" class="column1 glyphicon glyphicon-plus" aria-hidden="true"></span>
+											<span th:text="${race.name}" class="">Race</span>
+										</td>
+									</tr>
+									<tr>
+										<td class="hiddenRow accordian-body collapse" th:attr="id='row' + ${iterStat.count}">
+											<div th:include="raceData :: raceData"></div>
+										</td>
 									</tr>
 								</th:block>
 							</tbody>

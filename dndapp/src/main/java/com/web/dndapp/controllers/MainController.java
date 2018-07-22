@@ -19,6 +19,7 @@ public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(ModelMap model) {
+		LOG.info("Loading Main Page");
 		if (model.get("user") != null) {
 			model.addAttribute("user", model.get("user"));
 		}
@@ -33,5 +34,10 @@ public class MainController {
 		model.addAttribute("races", races);
 		
 		return "races";
+	}
+
+	@RequestMapping(value = "/characters", method = RequestMethod.GET)
+	public String character(ModelMap model) {
+		return "characters";
 	}
 }
