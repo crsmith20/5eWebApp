@@ -16,10 +16,10 @@
 
 a {
 	margin: 0px;
-	transition: all 0.4s;
+	/*transition: all 0.4s;
 	-webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
+  -moz-transition: all 0.4s;*/
 }
 
 a:focus {
@@ -138,6 +138,24 @@ table {
 
 .raceDataContainer {
 	padding-left: 5%;
+}
+
+.subraceContainer {
+	padding-left: 6%;
+}
+
+.subraceDataContainer {
+	padding-left: 7%;
+}
+
+.hiddenRow {
+	transition: none;
+	transition-delay: 0s;
+	transition-duration: 0s;
+	transition-property: none;
+	-webkit-transition: none;
+	-o-transition: none;
+	-moz-transition: none;
 }
 
 /*==================================================================*/

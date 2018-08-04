@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>D&D Character Builder</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+	<div class="mainNav">
+		<div th:include="header :: navBar"></div>	
+		<ul class="navBarList">
+			<li class="navBarItems"><a class="navBarLinks" th:href="@{/}">Home</a></li>
+			<li class="navBarItems"><a class="navBarLinks" th:href="@{/characters}">Characters</a></li>
+			<li class="navBarItems"><a class="navBarLinks" th:href="@{/races}">Races</a></li>
+			<li class="navBarItems"><a class="navBarLinks" th:href="@{/classes}">Classes</a></li>
+			<li class="navBarItems"><a class="navBarLinks active" th:href="@{/roller}">Dice Roller</a></li>
+			<li class="navBarItems" style="float: right" th:if="${user == null}"><a class="navBarLinks" th:href="@{/login}">Login</a></li>
+			<li class="navBarItems" style="float: right"  th:unless="${user == null}"><a class="navBarLinks" th:href="@{/admin}">Admin</a></li>
+		</ul>
+	</div>
+	<div class="container">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver3">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100" colspan="3">Roll</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div class="table100-body">
+						<table>
+							<tbody>
+								<tr class="row100 body" th:attr="data-target='#row' + ${iterStat.count}">
+									<td class="cell100"><button>Roll</button></td>
+									<td class="cell100"></td>
+									<td class="cell100" th:if="${result == null}" th:text="${''}">Result</td>
+									<td class="cell100" th:unless="${result == null}" th:text="${result}">Result</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

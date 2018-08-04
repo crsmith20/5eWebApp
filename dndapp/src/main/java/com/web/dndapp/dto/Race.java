@@ -1,14 +1,7 @@
 package com.web.dndapp.dto;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 public class Race {
 
@@ -64,7 +57,7 @@ public class Race {
 		return this.age;
 	}
 
-	public Map<String, Race> getSubraces() {
+	public Map<String, Race> getSubrace() {
 		return this.subrace;
 	}
 

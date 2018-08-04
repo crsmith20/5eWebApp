@@ -4,9 +4,9 @@
 <head>
 <title>D&D Character Builder</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/races.css}">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/css/main.css}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
@@ -16,15 +16,16 @@
 		<div th:include="header :: navBar"></div>
 		<ul class="navBarList">
 			<li class="navBarItems"><a class="navBarLinks" th:href="@{/}">Home</a></li>
-			<li class="navBarItems"><a class="navBarLinks"
-				th:href="@{/characters}">Characters</a></li>
-			<li class="navBarItems"><a class="navBarLinks active"
-				th:href="@{/races}">Races</a></li>
-			<li class="navBarItems" style="float: right" th:if="${user == null}"><a
-				class="navBarLinks" th:href="@{/login}">Login</a></li>
-			<li class="navBarItems" style="float: right"
-				th:unless="${user == null}"><a class="navBarLinks"
-				th:href="@{/admin}">Admin</a></li>
+			<li class="navBarItems"><a class="navBarLinks" th:href="@{/characters}">Characters</a></li>
+			<li class="navBarItems"><a class="navBarLinks active" th:href="@{/races}">Races</a></li>
+			<li class="navBarItems"><a class="navBarLinks active" th:href="@{/classes}">Classes</a></li>
+			<li class="navBarItems"><a class="navBarLinks active" th:href="@{/roller}">Dice Roller</a></li>
+			<li class="navBarItems" style="float: right" th:if="${user == null}">
+				<a class="navBarLinks" th:href="@{/login}">Login</a>
+			</li>
+			<li class="navBarItems" style="float: right" th:unless="${user == null}">
+				<a class="navBarLinks" th:href="@{/admin}">Admin</a>
+			</li>
 		</ul>
 	</div>
 	<div class="limiter">
@@ -47,7 +48,7 @@
 									<tr data-toggle="collapse" class="row100 body accordion-toggle" th:attr="data-target='#row' + ${iterStat.count}">
 										<td class="cell100 expandingRow">
 											<span th:attr="id='iconrow' + ${iterStat.count}" class="column1 glyphicon glyphicon-plus" aria-hidden="true"></span>
-											<span th:text="${race.name}" class="">Race</span>
+											<span th:text="${race.name}">Race</span>
 										</td>
 									</tr>
 									<tr>
