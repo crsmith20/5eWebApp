@@ -4,13 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.web.dndapp.services.DiceRollService;
 
 public class DiceRollServiceImpl implements DiceRollService {
 	
-	@Autowired Random rand;
+	private Random rand = new Random();
 
 	@Override
 	public int rollDice(int die, int number) {

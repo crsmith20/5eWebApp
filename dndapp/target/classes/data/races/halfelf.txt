@@ -1,5 +1,5 @@
 Race:Half-Elf
-AbilityScoreIncrease: CHA:2:ANY:1:ANY:1
+AbilityScoreIncrease: CHA:2:ANY2:1:ANY1:1
 Age:180
 Alignment:Chaotic
 Size:Medium

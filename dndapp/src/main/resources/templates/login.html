@@ -9,11 +9,6 @@
 <body>
 	<div class="mainNav">
 		<div th:include="header :: navBar"></div>	
-		<ul class="navBarList">
-			<li class="navBarItems"><a class="navBarLinks" th:href="@{/}">Home</a></li>
-			<li class="navBarItems"><a class="navBarLinks" th:href="@{/characters}">Characters</a></li>
-			<li class="navBarItems" style="float: right"><a class="navBarLinks active" th:href="@{/admin}">Login</a></li>
-		</ul>
 	</div>
 	<div id="container">
         <form action="/login" method="post">

@@ -13,6 +13,16 @@
 		<div class="navBar title">Character Builder</div>
 		<div id="left"></div>
 		<div id="right"></div>
+		<ul class="navBarList">
+			<li class="navBarItems"><a class="navBarLinks" th:classappend="${page == 'home'} ? 'active' : ''" th:href="@{/}">Home</a></li>
+			<li class="navBarItems"><a class="navBarLinks" th:classappend="${page == 'character'} ? 'active' : ''" th:href="@{/characters}">Characters</a></li>
+			<li class="navBarItems"><a class="navBarLinks" th:classappend="${page == 'race'} ? 'active' : ''" th:href="@{/races}">Races</a></li>
+			<li class="navBarItems"><a class="navBarLinks" th:classappend="${page == 'class'} ? 'active' : ''" th:href="@{/classes}">Classes</a></li>
+			<li class="navBarItems"><a class="navBarLinks" th:classappend="${page == 'backgrounds'} ? 'active' : ''" th:href="@{/backgrounds}">Backgrounds</a></li>
+			<li class="navBarItems"><a class="navBarLinks" th:classappend="${page == 'roller'} ? 'active' : ''" th:href="@{/roller}">Dice Roller</a></li>
+			<li class="navBarItems" style="float: right" th:if="${user == null}" th:classappend="${page == 'user'} ? 'active' : ''"><a class="navBarLinks" th:href="@{/login}">Login</a></li>
+			<li class="navBarItems" style="float: right"  th:unless="${user == null}" th:classappend="${page == 'user'} ? 'active' : ''"><a class="navBarLinks" th:href="@{/admin}">Admin</a></li>
+		</ul>
 	</div>
 </body>
 </html>

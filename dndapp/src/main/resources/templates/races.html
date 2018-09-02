@@ -14,19 +14,6 @@
 <body>
 	<div class="mainNav">
 		<div th:include="header :: navBar"></div>
-		<ul class="navBarList">
-			<li class="navBarItems"><a class="navBarLinks" th:href="@{/}">Home</a></li>
-			<li class="navBarItems"><a class="navBarLinks" th:href="@{/characters}">Characters</a></li>
-			<li class="navBarItems"><a class="navBarLinks active" th:href="@{/races}">Races</a></li>
-			<li class="navBarItems"><a class="navBarLinks active" th:href="@{/classes}">Classes</a></li>
-			<li class="navBarItems"><a class="navBarLinks active" th:href="@{/roller}">Dice Roller</a></li>
-			<li class="navBarItems" style="float: right" th:if="${user == null}">
-				<a class="navBarLinks" th:href="@{/login}">Login</a>
-			</li>
-			<li class="navBarItems" style="float: right" th:unless="${user == null}">
-				<a class="navBarLinks" th:href="@{/admin}">Admin</a>
-			</li>
-		</ul>
 	</div>
 	<div class="limiter">
 		<div class="container-table100">
