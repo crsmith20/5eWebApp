@@ -8,7 +8,7 @@ Languages:Common, Dwarvish
 Additional:Darkvision:60
 Additional:Dwarven Resillience:ADV:Poison Savig Throws:resistance:Poison
 Additional:Dwarven Combat Training:proficiency:battleaxe, handaxe, light hammer, warhammer
-Additional:ToolProficiency:Smith, Brewer, Mason
+Additional:Tool Proficiency:Smith, Brewer, Mason
 Additional:Stone Cunning:on stonework Proficiency: History double Proficiency
 Subrace:Hill, Mountain
 Hill:AbilityScoreIncrease: WIS:1

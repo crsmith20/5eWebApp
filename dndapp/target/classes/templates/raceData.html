@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Race Data Display</title>
+</head>
+<body>
+
+	<div class="raceData" th:fragment="raceData">
+		<div class="raceDataContainer">
+			<div class="asi" th:each="asi : ${race.asi}">
+				<span th:text="${asi.key} + ': '">Ability</span>
+				<span th:text="'+' + ${asi.value}">Increase</span>
+			</div>
+			<div class="age">
+				Age: You typically live to <span th:text="${race.age}">age</span> years old
+			</div>
+			<div class="alignment">
+				Alignment: You typically lean towards
+				<th:block th:each="alignment,iterStat : ${race.alignment}">
+					<th:block th:if="${iterStat.count == #lists.size(race.alignment) and #lists.size(race.alignment) != 1}">
+						<span th:text="'and ' + ${alignment}">align</span>
+					</th:block>
+					<th:block th:if="${iterStat.count == #lists.size(race.alignment) and #lists.size(race.alignment) == 1}">
+						<span th:text="${alignment}">align</span>
+					</th:block>
+					<th:block th:unless="${iterStat.count == #lists.size(race.alignment)}">
+						<span th:text="${alignment} + ', '">align</span>
+					</th:block>
+				</th:block>
+			</div>
+			<div class="languages">
+				Language: You can speak, read, and write 
+				<th:block th:each="language,iterStat : ${race.languages}">
+					<th:block th:if="${iterStat.count == #lists.size(race.languages) and #lists.size(race.languages) != 1}">
+						<span th:text="'and ' + ${language}">align</span>
+					</th:block>
+					<th:block th:if="${iterStat.count == #lists.size(race.languages) and #lists.size(race.languages) == 1}">
+						<span th:text="${language}">align</span>
+					</th:block>
+					<th:block th:unless="${iterStat.count == #lists.size(race.languages)}">
+						<span th:text="${language} + ', '">align</span>
+					</th:block>
+				</th:block>
+			</div>
+			<div class="size">
+				Size: Your size is <span th:text="${race.size}">size</span>
+			</div>
+			<div class="speed">
+				Speed: Your base walking speed is <span th:text="${race.speed}">speed</span> feet
+			</div>
+			<div class="feats" th:each="feat : ${race.feats}">
+				<span th:text="${feat.key} + ': '">Feat Name</span>
+				<span th:text="${feat.value}">Description</span>
+			</div>
+			<div class="subraces" th:if="${race.subrace != null}">
+				Subrace: There are <span th:text="${#maps.size(race.subrace)}">number</span> subraces for <span th:text="${race.name}">race</span> and you must choose one.
+				<div class="subraceContainer">
+					<div th:each="subrace : ${race.subrace}">
+						<div th:text="${subrace.value.name} + ':'">Subrace</div>
+						<div th:include="subraceData :: subraceData"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

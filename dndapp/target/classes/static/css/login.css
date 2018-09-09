@@ -1,10 +1,4 @@
 /* Basics */
-html, body {
-    width: 100%;
-    height: 100%;
-    color: #444;
-    -webkit-font-smoothing: antialiased;
-}
 #container {
     position: fixed;
     width: 340px;
@@ -100,7 +94,7 @@ input[type=submit] {
     margin-top: 20px;
     width: 80px;
     height: 30px;
-font-size: 14px;
+	font-size: 14px;
     font-weight: bold;
     color: #fff;
     background-color: #acd6ef; /*IE fallback*/

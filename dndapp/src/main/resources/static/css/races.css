@@ -16,10 +16,10 @@
 
 a {
 	margin: 0px;
-	transition: all 0.4s;
+	/*transition: all 0.4s;
 	-webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
+  -moz-transition: all 0.4s;*/
 }
 
 a:focus {
@@ -48,6 +48,7 @@ a:hover {
 
 .wrap-table100 {
   width: 85%;
+  border-radius: 25px;
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -58,15 +59,11 @@ a:hover {
 
 table {
   width: 100%;
-}
-
-.column0 {
-  padding-left: 40px;
-  width: 6%;
+  border-radius: 25px;
 }
 
 .column1 {
-  padding-left: 0;
+  padding-left: 3%;
 }
 
 .table100-head th {
@@ -74,6 +71,12 @@ table {
   padding-bottom: 18px;
   text-align: center;
   text-size: 42;
+  border-radius: 25px;
+}
+
+.table100-body {
+	border-bottom-right-radius: 25px;
+  	border-bottom-left-radius: 25px;
 }
 
 .table100-body td {
@@ -89,6 +92,7 @@ table {
 
 .table100-head {
   width: 100%;
+  border-radius: 25px;
 }
 
 /*==================================================================
@@ -96,6 +100,7 @@ table {
 
 .table100.ver3 {
   background-color: #393939;
+  border-radius: 25px;
 }
 
 .table100.ver3 th {
@@ -127,5 +132,30 @@ table {
 }
 
 
+.glyphicon {
+	color: #EC2127;
+}
+
+.raceDataContainer {
+	padding-left: 5%;
+}
+
+.subraceContainer {
+	padding-left: 6%;
+}
+
+.subraceDataContainer {
+	padding-left: 7%;
+}
+
+.hiddenRow {
+	transition: none;
+	transition-delay: 0s;
+	transition-duration: 0s;
+	transition-property: none;
+	-webkit-transition: none;
+	-o-transition: none;
+	-moz-transition: none;
+}
 
 /*==================================================================*/
