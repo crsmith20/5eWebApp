@@ -3,9 +3,13 @@ package com.web.dndapp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.web.dndapp.dao.BackgroundDAO;
 import com.web.dndapp.dao.CharacterDAO;
+import com.web.dndapp.dao.ClassDAO;
 import com.web.dndapp.dao.RaceDAO;
+import com.web.dndapp.dao.impl.BackgroundDAOImpl;
 import com.web.dndapp.dao.impl.CharacterDAOImpl;
+import com.web.dndapp.dao.impl.ClassDAOImpl;
 import com.web.dndapp.dao.impl.RaceDAOImpl;
 import com.web.dndapp.services.DiceRollService;
 import com.web.dndapp.services.impl.DiceRollServiceImpl;
@@ -26,5 +30,15 @@ public class AppConfig {
 	@Bean
 	public DiceRollService diceRollerService() {
 		return new DiceRollServiceImpl();
+	}
+
+	@Bean
+	public ClassDAO classDAO() {
+		return new ClassDAOImpl();
+	}
+
+	@Bean
+	public BackgroundDAO backgroundDAO() {
+		return new BackgroundDAOImpl();
 	}
 }

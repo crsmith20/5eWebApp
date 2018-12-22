@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +55,7 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/addCharacter", method = RequestMethod.POST)
-	public String addCharacter(ModelMap model) {
+	public String addCharacter(ModelMap model, @RequestBody Character character) {
 		model.addAttribute("page", "character");
 		return "redirect:characters";
 	}

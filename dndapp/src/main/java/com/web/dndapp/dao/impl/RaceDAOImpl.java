@@ -228,7 +228,7 @@ public class RaceDAOImpl implements RaceDAO {
 		File folder = new File("./src/main/resources/data/races");
 		// for file in resources/data/races
 		for (File fileEntry : folder.listFiles()) {
-			if (fileEntry.getName().equals(name + "txt")) {
+			if (fileEntry.getName().equals(name + ".txt")) {
 				return getRaceFromFile(fileEntry);
 			}
 		}
