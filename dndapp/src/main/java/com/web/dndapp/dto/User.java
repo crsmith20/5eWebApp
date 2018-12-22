@@ -5,9 +5,7 @@ public class User {
 	private String username;
 	
 	private String name;
-	
-	public User() {}
-	
+
 	public String getUsername() {
 		return this.username;
 	}

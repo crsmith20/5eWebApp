@@ -1,6 +1,6 @@
 package com.web.dndapp.dao.impl;
 
-import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
 
 import com.web.dndapp.dao.BackgroundDAO;
@@ -9,7 +9,7 @@ import com.web.dndapp.dto.Background;
 public class BackgroundDAOImpl implements BackgroundDAO {
 
 	@Override
-	public Background getBackgroundFromFile(File file) throws Exception {
+	public Background getBackgroundFromFile(Path file) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
