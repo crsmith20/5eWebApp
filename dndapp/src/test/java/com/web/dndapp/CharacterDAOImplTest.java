@@ -15,11 +15,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.web.dndapp.dao.BackgroundDAO;
@@ -36,6 +40,9 @@ import com.web.dndapp.dto.Race;
 public class CharacterDAOImplTest {
 
 	@Mock
+	private Environment env;
+
+	@Mock
 	private ClassDAO classDAO;
 
 	@Mock
@@ -46,6 +53,11 @@ public class CharacterDAOImplTest {
 
 	@InjectMocks
 	private CharacterDAOImpl cdi;
+
+	@Before
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
+	}
 
 	@Test
 	public void testGetCharacterFromFileNoArchetypes() throws Exception {
@@ -66,7 +78,7 @@ public class CharacterDAOImplTest {
 		when(raceDAO.loadRaces()).thenReturn(races);
 		when(classDAO.loadClasses()).thenReturn(clazz);
 
-		Character c = cdi.getCharacterFromFile(Paths.get("./src/main/resources/data/characters/1.txt"));
+		Character c = cdi.getCharacterFromFile(Paths.get("./src/main/resources/data/characters/test/1.txt"));
 
 		assertEquals(1 ,c.getId());
 		assertEquals("Chris" ,c.getPlayer());
@@ -187,13 +199,13 @@ public class CharacterDAOImplTest {
 		when(raceDAO.loadRaces()).thenReturn(races);
 		when(classDAO.loadClasses()).thenReturn(clazz);
 
-		Character c = cdi.getCharacterFromFile(Paths.get("./src/main/resources/data/characters/1.txt"));
+		Character c = cdi.getCharacterFromFile(Paths.get("./src/main/resources/data/characters/test/2.txt"));
 
-		assertEquals(1, c.getId());
+		assertEquals(2, c.getId());
 		assertEquals("Chris", c.getPlayer());
 		assertEquals("Test", c.getName());
 		assertEquals(1, c.getCclass().size());
-		assertTrue(c.getCclass().containsKey("Barbarian"));
+		assertTrue(c.getCclass().containsKey("Totem Barbarian"));
 		assertEquals("Human", c.getRace().getName());
 		assertEquals("Acolyte", c.getBackground().getName());
 		assertEquals("Chaotic Good", c.getAlignment());
@@ -286,18 +298,34 @@ public class CharacterDAOImplTest {
 
 	@Test
 	public void testDeleteCharacter() throws IOException {
-		Path testPath = Paths.get("./src/main/resources/data/characters/-1.txt");
-		// makes sure it doesn't exist before hand
-		Files.deleteIfExists(testPath);
-		// creates the file
-		Files.createFile(testPath);
+		Path testPath = Files.createFile(Paths.get("./src/main/resources/data/characters/-1.txt"));
 		// asserts that the file was created properly
 		assertTrue(Files.exists(testPath));
+
+		when(env.getProperty(Mockito.anyString())).thenReturn("./src/main/resources/data/characters/");
 
 		// delete the character
 		assertTrue(cdi.deleteCharacter(-1L));
 
 		// check to make sure the file was deleted
 		assertFalse(Files.exists(testPath));
+	}
+
+	@Test
+	public void testGetNextId() throws IOException {
+		// set up
+		Path temp = Files.createTempDirectory(Paths.get("./src/main/resources"), "tempdata");
+		Path[] testPaths = { Paths.get(temp.toString(), "1.txt"),
+				Paths.get(temp.toString(), "2.txt"),
+				Paths.get(temp.toString(), "3.txt") };
+		for (int i = 0; i < testPaths.length; i++) {
+			Files.createFile(testPaths[i]);
+		}
+		
+		when(env.getProperty(Mockito.anyString())).thenReturn(temp.toString());
+
+		long result = cdi.getNextId();
+		
+		assertEquals(4L, result);
 	}
 }

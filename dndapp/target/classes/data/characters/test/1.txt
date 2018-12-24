@@ -1,6 +1,6 @@
 Player:Chris
 Name:Test
-Class:Totem Barbarian:1
+Class:Barbarian:1
 Race:Human
 Background:Acolyte
 Alignment:Chaotic Good

@@ -9,9 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +70,8 @@ public class CharacterDAOImpl implements CharacterDAO {
 		LOG.info("Loading Character id {}", file.toString());
 
 		Character character = new Character();
-		character.setId(Long.valueOf(file.toString().substring(0, file.toString().lastIndexOf('.'))));
+		String filename = file.toString();
+		character.setId(Long.valueOf(filename.substring(filename.lastIndexOf('\\') + 1, filename.length() - 4)));
 		try (BufferedReader reader = Files.newBufferedReader(file)) {
 			String lines = null;
 			while ((lines = reader.readLine()) != null) {
@@ -417,8 +421,36 @@ public class CharacterDAOImpl implements CharacterDAO {
 
 	@Override
 	public Character saveCharacter(Character character) {
-		// TODO Auto-generated method stub
+		if (character.getId() == 0) {
+			character.setId(getNextId());
+		}
+
 		return null;
 	}
+
+	public long getNextId() {
+		long id = 0;
+		try (Stream<Path> paths = Files.walk(Paths.get(env.getProperty("base.race")))) {
+			List<Path> files = paths.filter(Files::isRegularFile).sorted(new Comparator<Path>() {
+				public int compare(Path p1, Path p2) {
+					String n1 = p1.toString();
+					String n2 = p2.toString();
+					if (n1.length() == n2.length()) {
+						long l1 = Long.valueOf(n1.substring(n1.lastIndexOf('\\') + 1, n1.length() - 4));
+						long l2 = Long.valueOf(n2.substring(n2.lastIndexOf('\\') + 1, n2.length() - 4));
+						return Long.compare(l2, l1);
+					} else {
+						return Integer.compare(n2.length(), n1.length());
+					}
+				}
+			}).collect(Collectors.toList());
+			String highest = files.get(0).toString();
+			id = Long.valueOf(highest.substring(highest.lastIndexOf('\\') + 1, highest.length() - 4));
+		} catch (IOException e) {
+			LOG.debug("Path doesn't exist", e);
+		}
+		return id + 1;
+	}
+
 
 }
