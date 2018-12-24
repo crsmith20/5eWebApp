@@ -309,6 +309,9 @@ public class CharacterDAOImplTest {
 
 		// check to make sure the file was deleted
 		assertFalse(Files.exists(testPath));
+
+		// cleanup
+		Files.delete(testPath);
 	}
 
 	@Test
@@ -327,5 +330,11 @@ public class CharacterDAOImplTest {
 		long result = cdi.getNextId();
 		
 		assertEquals(4L, result);
+
+		// cleanup
+		for (int i = 0; i < testPaths.length; i++) {
+			Files.delete(testPaths[i]);
+		}
+		Files.delete(temp);
 	}
 }
