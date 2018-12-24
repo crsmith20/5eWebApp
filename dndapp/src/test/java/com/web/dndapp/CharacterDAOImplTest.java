@@ -309,9 +309,6 @@ public class CharacterDAOImplTest {
 
 		// check to make sure the file was deleted
 		assertFalse(Files.exists(testPath));
-
-		// cleanup
-		Files.delete(testPath);
 	}
 
 	@Test
