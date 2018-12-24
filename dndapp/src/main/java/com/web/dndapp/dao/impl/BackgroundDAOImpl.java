@@ -3,9 +3,12 @@ package com.web.dndapp.dao.impl;
 import java.nio.file.Path;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.web.dndapp.dao.BackgroundDAO;
 import com.web.dndapp.dto.Background;
 
+@Component
 public class BackgroundDAOImpl implements BackgroundDAO {
 
 	@Override

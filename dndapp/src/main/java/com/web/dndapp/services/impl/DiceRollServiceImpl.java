@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import org.springframework.stereotype.Service;
+
 import com.web.dndapp.services.DiceRollService;
 
+@Service
 public class DiceRollServiceImpl implements DiceRollService {
 	
 	private Random rand = new Random();

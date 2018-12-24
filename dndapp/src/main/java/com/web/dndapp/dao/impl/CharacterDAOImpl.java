@@ -1,8 +1,10 @@
 package com.web.dndapp.dao.impl;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 import com.web.dndapp.dao.BackgroundDAO;
 import com.web.dndapp.dao.CharacterDAO;
@@ -25,9 +29,10 @@ import com.web.dndapp.dto.Class;
 import com.web.dndapp.dto.Level;
 import com.web.dndapp.dto.Race;
 
+@Component
 public class CharacterDAOImpl implements CharacterDAO {
 
-	private final static Logger LOG = LoggerFactory.getLogger(RaceDAOImpl.class);
+	private final static Logger LOG = LoggerFactory.getLogger(CharacterDAOImpl.class);
 
 	@Autowired
 	private ClassDAO classDAO;
@@ -38,10 +43,13 @@ public class CharacterDAOImpl implements CharacterDAO {
 	@Autowired
 	private BackgroundDAO backgroundDAO;
 
+	@Autowired
+	private Environment env;
+
 	@Override
 	public List<Character> loadCharacters() throws Exception {
 		List<Character> characters = new ArrayList<>();
-		Path folder = Paths.get("./src/main/resources/data/characters");
+		Path folder = Paths.get(env.getProperty("base.character"));
 		// for file in resources/data/characters
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(folder)) {
 			for (Path file : stream) {
@@ -56,7 +64,7 @@ public class CharacterDAOImpl implements CharacterDAO {
 
 	@Override
 	public Character getCharacterFromFile(Path file) throws Exception {
-		LOG.info("Loading Character id {}", file.toString().substring(0, file.toString().lastIndexOf('.')));
+		LOG.info("Loading Character id {}", file.toString());
 
 		Character character = new Character();
 		character.setId(Long.valueOf(file.toString().substring(0, file.toString().lastIndexOf('.'))));
@@ -379,26 +387,38 @@ public class CharacterDAOImpl implements CharacterDAO {
 
 	@Override
 	public Character getCharacterById(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Character updateCharacter(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Path path = Paths.get(env.getProperty("base.character"), String.valueOf(id) + ".txt");
+		Character character = null;
+		try {
+			character = getCharacterFromFile(path);
+		} catch (Exception e) {
+			LOG.debug("Error getting character from {}.", path.toString(), e);
+		}
+		return character;
 	}
 
 	@Override
 	public boolean deleteCharacter(long id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = true;
+		try {
+			String base = env.getProperty("base.character");
+			Path path = Paths.get(base, String.valueOf(id) + ".txt");
+			Files.delete(path);
+		} catch (NoSuchFileException x) {
+			result = false;
+			LOG.debug("No character found with id {}", id, x);
+		} catch (IOException x) {
+			result = false;
+			// File permission problems are caught here.
+			LOG.debug("Could not delete file", x);
+		}
+		return result;
 	}
 
 	@Override
-	public boolean saveCharacter(Character character) {
+	public Character saveCharacter(Character character) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 }

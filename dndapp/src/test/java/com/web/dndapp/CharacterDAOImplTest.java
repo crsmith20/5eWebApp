@@ -1,11 +1,15 @@
 package com.web.dndapp;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +66,7 @@ public class CharacterDAOImplTest {
 		when(raceDAO.loadRaces()).thenReturn(races);
 		when(classDAO.loadClasses()).thenReturn(clazz);
 
-		Character c = cdi.getCharacterFromFile(new File("./src/main/resources/data/characters/1.txt"));
+		Character c = cdi.getCharacterFromFile(Paths.get("./src/main/resources/data/characters/1.txt"));
 
 		assertEquals(1 ,c.getId());
 		assertEquals("Chris" ,c.getPlayer());
@@ -183,7 +187,7 @@ public class CharacterDAOImplTest {
 		when(raceDAO.loadRaces()).thenReturn(races);
 		when(classDAO.loadClasses()).thenReturn(clazz);
 
-		Character c = cdi.getCharacterFromFile(new File("./src/main/resources/data/characters/1.txt"));
+		Character c = cdi.getCharacterFromFile(Paths.get("./src/main/resources/data/characters/1.txt"));
 
 		assertEquals(1, c.getId());
 		assertEquals("Chris", c.getPlayer());
@@ -278,5 +282,22 @@ public class CharacterDAOImplTest {
 		assertNull(c.getEighthSpells());
 		assertEquals(0, c.getNinthSlots());
 		assertNull(c.getNinthSpells());
+	}
+
+	@Test
+	public void testDeleteCharacter() throws IOException {
+		Path testPath = Paths.get("./src/main/resources/data/characters/-1.txt");
+		// makes sure it doesn't exist before hand
+		Files.deleteIfExists(testPath);
+		// creates the file
+		Files.createFile(testPath);
+		// asserts that the file was created properly
+		assertTrue(Files.exists(testPath));
+
+		// delete the character
+		assertTrue(cdi.deleteCharacter(-1L));
+
+		// check to make sure the file was deleted
+		assertFalse(Files.exists(testPath));
 	}
 }

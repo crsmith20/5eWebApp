@@ -13,13 +13,20 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 import com.web.dndapp.dao.RaceDAO;
 import com.web.dndapp.dto.Race;
 
+@Component
 public class RaceDAOImpl implements RaceDAO {
 
 	private final static Logger LOG = LoggerFactory.getLogger(RaceDAOImpl.class);
+	
+	@Autowired
+	private Environment env;
 
 	@Override
 	public Race getRaceFromFile(Path file) throws Exception {
@@ -214,13 +221,12 @@ public class RaceDAOImpl implements RaceDAO {
 	@Override
 	public List<Race> loadRaces() throws Exception {
 		List<Race> races = new ArrayList<>();
-		Path folder = Paths.get("./src/main/resources/data/races");
+		Path folder = Paths.get(env.getProperty("base.race"));
 		// for file in resources/data/races
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(folder)) {
 			for (Path file : stream) {
-				if (!file.toString().equals("raceTemplate.txt")) {
-					Race race = getRaceFromFile(file);
-					races.add(race);
+				if (!file.toString().contains(env.getProperty("race.template"))) {
+					races.add(getRaceFromFile(file));
 				}
 			}
 		}
@@ -229,7 +235,7 @@ public class RaceDAOImpl implements RaceDAO {
 
 	@Override
 	public Race getRace(String name) throws Exception {
-		Path folder = Paths.get("./src/main/resources/data/races");
+		Path folder = Paths.get(env.getProperty("base.race"));
 		// for file in resources/data/races
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(folder)) {
 			for (Path file : stream) {

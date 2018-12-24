@@ -15,9 +15,7 @@ public interface CharacterDAO {
 
 	public Character getCharacterById(long id) throws Exception;
 
-	public Character updateCharacter(long id) throws Exception;
-
 	public boolean deleteCharacter(long id) throws Exception;
 
-	public boolean saveCharacter(Character character) throws Exception;
+	public Character saveCharacter(Character character) throws Exception;
 }
