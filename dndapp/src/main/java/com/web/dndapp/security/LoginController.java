@@ -20,9 +20,9 @@ import com.web.dndapp.utility.FileUtility;
 
 @Controller
 @SessionAttributes("user")
-public class LogInController {
+public class LoginController {
 
-	private final static Logger LOG = LoggerFactory.getLogger(LogInController.class);
+	private final static Logger LOG = LoggerFactory.getLogger(LoginController.class);
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
