@@ -1,8 +1,9 @@
 package com.web.dndapp.dto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class Level {
 
@@ -17,8 +18,8 @@ public class Level {
 		this.setClassLevels(level);
 	}
 
-	public Set<String> getClasses() {
-		return this.level.keySet();
+	public List<String> getClasses() {
+		return new ArrayList<>(this.level.keySet());
 	}
 
 	public void addClassAndLevel(String className, Integer level) {
@@ -41,7 +42,7 @@ public class Level {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return total level of character
 	 */
 	public int getLevel() {

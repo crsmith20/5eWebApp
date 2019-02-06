@@ -1,6 +1,7 @@
 package com.web.dndapp.dao.impl;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -396,7 +397,7 @@ public class CharacterDAOImpl implements CharacterDAO {
 		try {
 			character = getCharacterFromFile(path);
 		} catch (Exception e) {
-			LOG.debug("Error getting character from {}.", path.toString(), e);
+			LOG.error("Error getting character from {}.", path.toString(), e);
 		}
 		return character;
 	}
@@ -410,11 +411,11 @@ public class CharacterDAOImpl implements CharacterDAO {
 			Files.delete(path);
 		} catch (NoSuchFileException x) {
 			result = false;
-			LOG.debug("No character found with id {}", id, x);
+			LOG.error("No character found with id {}", id, x);
 		} catch (IOException x) {
 			result = false;
 			// File permission problems are caught here.
-			LOG.debug("Could not delete file", x);
+			LOG.error("Could not delete file", x);
 		}
 		return result;
 	}
@@ -424,7 +425,73 @@ public class CharacterDAOImpl implements CharacterDAO {
 		if (character.getId() == 0) {
 			character.setId(getNextId());
 		}
-
+		try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(env.getProperty("character.base"), String.valueOf(character.getId()) + ".txt"))) {
+			// player
+			writer.write("Player:");
+			writer.write(character.getPlayer());
+			writer.write(System.lineSeparator());
+			// name
+			writer.write("Name:");
+			writer.write(character.getName());
+			writer.write(System.lineSeparator());
+			// class
+			Level level = character.getLevel();
+			writer.write("Class:");
+			for (int i = 0; i < level.getClasses().size() - 1; i++) {
+				writer.write(level.getClasses().get(i));
+				writer.write(":");
+				writer.write(String.valueOf(level.getLevelByClass(character.getLevel().getClasses().get(i))));
+				writer.write(":");
+			}
+			writer.write(level.getClasses().get(level.getClasses().size() - 1));
+			writer.write(":");
+			writer.write(String.valueOf(level.getLevelByClass(level.getClasses().get(level.getClasses().size() - 1))));
+			writer.write(System.lineSeparator());
+			// Race
+			writer.write("Race:");
+			writer.write(character.getRace().getName());
+			// Background
+			writer.write("Background:");
+			writer.write(character.getBackground().getName());
+			// Alignment
+			writer.write("Alignment:");
+			writer.write(character.getAlignment());
+			// experience
+			writer.write("Experience");
+			writer.write(String.valueOf(character.getExperience()));
+			// Strength
+			writer.write("Strength:");
+			writer.write(String.valueOf(character.getStrength()));
+			// Dex
+			writer.write("Dexterity:");
+			writer.write(String.valueOf(character.getDexterity()));
+			// Con
+			writer.write("Constitution:");
+			writer.write(String.valueOf(character.getConstitution()));
+			// Int
+			writer.write("Intelligence:");
+			writer.write(String.valueOf(character.getIntelligence()));
+			// Wis
+			writer.write("Wisdom:");
+			writer.write(String.valueOf(character.getWisdom()));
+			// Cha
+			writer.write("Charisma:");
+			writer.write(String.valueOf(character.getCharisma()));
+			// Saving Throws
+			writer.write("Savingthrows:");
+			writer.write(String.join(",", character.getSavingThrows()));
+			// Skills
+			writer.write("Skills:");
+			writer.write(String.join(",", character.getSkills()));
+			// Passive Perception
+			writer.write("Passiveperception:");
+			writer.write(String.valueOf(character.getPassivePerception()));
+			// other proficiencies
+			writer.write("Languages:");
+			writer.write(String.join(",", character.getLanguages()));
+		} catch (IOException e) {
+			LOG.error("File does not exist", e);
+		}
 		return null;
 	}
 
@@ -432,6 +499,7 @@ public class CharacterDAOImpl implements CharacterDAO {
 		long id = 0;
 		try (Stream<Path> paths = Files.walk(Paths.get(env.getProperty("base.race")))) {
 			List<Path> files = paths.filter(Files::isRegularFile).sorted(new Comparator<Path>() {
+				@Override
 				public int compare(Path p1, Path p2) {
 					String n1 = p1.toString();
 					String n2 = p2.toString();
@@ -447,7 +515,7 @@ public class CharacterDAOImpl implements CharacterDAO {
 			String highest = files.get(0).toString();
 			id = Long.valueOf(highest.substring(highest.lastIndexOf('\\') + 1, highest.length() - 4));
 		} catch (IOException e) {
-			LOG.debug("Path doesn't exist", e);
+			LOG.error("Path doesn't exist", e);
 		}
 		return id + 1;
 	}
