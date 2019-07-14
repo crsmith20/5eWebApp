@@ -6,6 +6,6 @@ Size:Medium
 Speed:30
 Languages:Common, Any
 Additional:Darkvision:60ft
-Additional:Feline Agility:Your reflexes and agility allow you to move with a burst of speed. When you move on your turn in combat, you can double your speed until the end of the turn. Once you use this trait, you can't use it again until you move 0ft on one of your turns.
+Additional:Feline Agility:Your reflexes and agility allow you to move with a burst of speed. When you move on your turn in combat, you can double your speed until the end of the turn. Once you use this trait, you can't use it again until you move 0 ft on one of your turns.
 Additional:Cat's Claws:Because of your claws, you have a climbing speed of 20ft. In addition, your claws are natural weapons, which you can use to make unarmed strikes. If you hit with them, you deal slashing damage equal to 1d4+ your Strength modifier, instead of the blludgeoning damage normal for an unarmed strike.
 Additional:Cat's Talent:You have proficiency in the Perception and Stealth skills.
