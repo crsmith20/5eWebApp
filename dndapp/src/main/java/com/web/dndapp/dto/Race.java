@@ -33,6 +33,53 @@ public class Race {
 		this.feats = feats;
 	}
 
+	public Race(Race o) {
+		this.name = o.getName();
+		this.asi = o.getAsi();
+		this.alignment = o.getAlignment();
+		this.languages = o.getLanguages();
+		this.size = o.getSize();
+		this.age = o.getAge();
+		this.speed = o.getSpeed();
+		this.feats = o.getFeats();
+	}
+
+	public Race chosenSubrace(String subraceName) {
+		Race race = new Race(this);
+		Race subrace = this.getSubrace().get(subraceName);
+		race.setName(subraceName + " " + this.getName());
+		race.setAge(subrace.getAge());
+		race.setSize(subrace.getSize());
+
+		for (String alignment : subrace.getAlignment()) {
+			if (!race.getAlignment().contains(alignment)) {
+				race.getAlignment().add(alignment);
+			}
+		}
+
+		for (String language : subrace.getLanguages()) {
+			if (!race.getLanguages().contains(language)) {
+				race.getLanguages().add(language);
+			}
+		}
+
+		for (String asi : subrace.getAsi().keySet()) {
+			race.getAsi().put(asi, subrace.getAsi().get(asi));
+		}
+
+		for (String feat : subrace.getFeats().keySet()) {
+			race.getFeats().put(feat, subrace.getFeats().get(feat));
+		}
+
+		if (!subrace.getSubrace().isEmpty()) {
+			for (String sr : subrace.getSubrace().keySet()) {
+				race.getSubrace().put(sr, subrace.getSubrace().get(sr));
+			}
+		}
+
+		return race;
+	}
+
 	public String getName() {
 		return this.name;
 	}
@@ -106,6 +153,6 @@ public class Race {
 	}
 
 	public String toString() {
-		return "String";
+		return "Race: " + this.getName();
 	}
 }

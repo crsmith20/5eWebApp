@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.dndapp.dao.CharacterDAO;
 import com.web.dndapp.dao.RaceDAO;
+import com.web.dndapp.dto.Character;
 import com.web.dndapp.dto.Race;
 import com.web.dndapp.services.DiceRollService;
 
@@ -48,25 +50,34 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/characters", method = RequestMethod.GET)
-	public String character(ModelMap model) {
+	public String character(ModelMap model) throws Exception {
+		LOG.info("Loading characters");
+
+		List<Character> characters = characterDAO.loadCharacters();
+		model.addAttribute("characters", characters);
 		model.addAttribute("page", "character");
 		return "characters";
 	}
 
 	@RequestMapping(value = "/addCharacter", method = RequestMethod.POST)
-	public String addCharacter(ModelMap model) {
+	public String addCharacter(ModelMap model, @RequestBody Character character) throws Exception {
+		characterDAO.saveCharacter(character);
 		model.addAttribute("page", "character");
 		return "redirect:characters";
 	}
 
 	@RequestMapping(value = "/updateCharacter", method = RequestMethod.POST)
-	public String updateCharacter(ModelMap model) {
+	public String updateCharacter(ModelMap model, @RequestBody Character character) {
 		model.addAttribute("page", "character");
 		return "redirect:characters";
 	}
 
 	@RequestMapping(value = "/character/{id}", method = RequestMethod.GET)
-	public String viewCharacter(ModelMap model, @PathVariable("id") long id) {
+	public String viewCharacter(ModelMap model, @PathVariable("id") long id) throws Exception {
+		LOG.info("Loading character {}", id);
+
+		Character character = characterDAO.getCharacterById(id);
+		model.addAttribute("character", character);
 		model.addAttribute("page", "character");
 		return "characterView";
 	}

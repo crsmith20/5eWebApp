@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.ModelMap;
 
 import com.web.dndapp.dto.User;
-import com.web.dndapp.security.LogInController;
+import com.web.dndapp.security.LoginController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,7 +27,7 @@ public class LogInControllerTest {
 	private MockMvc mockMvc;
 
 	@Autowired
-	public LogInController controller;
+	public LoginController controller;
 
 	@Before
 	public void setUp() {

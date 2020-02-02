@@ -1,8 +1,10 @@
 package com.web.dndapp.security;
 
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +20,9 @@ import com.web.dndapp.utility.FileUtility;
 
 @Controller
 @SessionAttributes("user")
-public class LogInController {
+public class LoginController {
 
-	private final static Logger LOG = LoggerFactory.getLogger(LogInController.class);
+	private final static Logger LOG = LoggerFactory.getLogger(LoginController.class);
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
@@ -33,23 +35,20 @@ public class LogInController {
 
 		String user = username;
 		String pass = Encryption.hashPassword(password);
-		try {
-			Scanner filescan = new Scanner(new File("./src/main/resources/data/passwords.txt"));
-			while (filescan.hasNextLine()) {
-				String lines = filescan.nextLine();
+		try (BufferedReader reader = Files.newBufferedReader(Paths.get("./src/main/resources/data/passwords.txt"))) {
+			String lines;
+			while ((lines = reader.readLine()) != null) {
 				String[] line = lines.split(":");
 				if (user.equals(line[0])) {
 					if (pass.equals(line[1])) {
 						model.addAttribute("user", CurrentUser.loadUser(user));
-						filescan.close();
 						return "redirect:/";
 					}
 				}
 			}
 			LOG.info("Email or Password Incorrect");
-			filescan.close();
-		} catch (Exception e) {
-			LOG.error("File Path Incorrect");
+		} catch (IOException e) {
+			LOG.error("File Path Incorrect", e);
 		}
 		return "redirect:/login";
 	}
@@ -63,26 +62,25 @@ public class LogInController {
 	public String register(ModelMap model, @RequestParam("username") String username,
 			@RequestParam("password") String password) {
 		
-		
-		Scanner filescan;
-		try {
-			filescan = new Scanner(new File("./src/main/resources/data/passwords.txt"));
-			while (filescan.hasNextLine()) {
-				String lines = filescan.nextLine();
+		try (BufferedReader reader = Files.newBufferedReader(Paths.get("./src/main/resources/data/passwords.txt"))) {
+			String lines = null;
+			while ((lines = reader.readLine()) != null) {
 				String[] line = lines.split(":");
 				if (username.equals(line[0])) {
 					if (Encryption.hashPassword(password).equals(line[1])) {
-						filescan.close();
 						LOG.info("User already exists");
 						return "redirect:/register";
 					}
 				}
 			}
 		} catch (FileNotFoundException e) {
+			LOG.debug("File was not found", e);
+			return "redirect:/register";
+		} catch (IOException e) {
+			LOG.debug("There was an error opening the file.", e);
 			return "redirect:/register";
 		}
-		FileUtility.writePassword(new File("./src/main/resources/data/passwords.txt"), username, password);
-		filescan.close();
+		FileUtility.writePassword(Paths.get("./src/main/resources/data/passwords.txt"), username, password);
 		return "redirect:/login";
 	}
 }
